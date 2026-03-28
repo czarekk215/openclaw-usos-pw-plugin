@@ -69,7 +69,13 @@ jobs:
 
       - name: Publish to npm
         if: ${{ env.NODE_AUTH_TOKEN != '' }}
-        run: npm publish artifacts/*.tgz --access public
+        run: |
+          TARBALL="$(find artifacts -type f -name '*.tgz' | head -n 1)"
+          if [ -z "$TARBALL" ]; then
+            echo "No .tgz package found in artifacts/"
+            exit 1
+          fi
+          npm publish "$(realpath "$TARBALL")" --access public
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')
