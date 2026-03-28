@@ -43,9 +43,11 @@ jobs:
           if-no-files-found: error
 
   publish-npm:
-    if: startsWith(github.ref, 'refs/tags/v') && secrets.NPM_TOKEN != ''
+    if: startsWith(github.ref, 'refs/tags/v')
     needs: build
     runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -59,10 +61,15 @@ jobs:
           name: openclaw-usos-pw-plugin-package
           path: artifacts
 
+      - name: Check npm token
+        if: ${{ env.NODE_AUTH_TOKEN == '' }}
+        run: |
+          echo "NPM_TOKEN secret is not set. Skipping npm publish."
+          exit 0
+
       - name: Publish to npm
+        if: ${{ env.NODE_AUTH_TOKEN != '' }}
         run: npm publish artifacts/*.tgz --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')
