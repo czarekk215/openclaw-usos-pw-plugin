@@ -1,0 +1,11 @@
+{
+  "id": "openclaw-usos-pw-plugin",
+  "name": "USOS PW",
+  "description": "Narzędzia OpenClaw do logowania i wykonywania akcji w USOSWeb PW.",
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

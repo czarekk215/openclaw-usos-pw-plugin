@@ -1,0 +1,25 @@
+{
+  "name": "openclaw-usos-pw-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenClaw plugin for authenticated USOSWeb PW access",
+  "files": [
+    "dist",
+    "openclaw.plugin.json",
+    "README.md",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "node ./scripts/build.mjs",
+    "pack:plugin": "npm run build && npm pack --pack-destination artifacts"
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.41"
+  }
+}
