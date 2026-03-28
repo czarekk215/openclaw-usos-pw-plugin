@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "type": "module",
+  "license": "MIT",
   "description": "OpenClaw plugin for authenticated USOSWeb PW access",
   "publishConfig": {
     "access": "public"
@@ -10,6 +11,7 @@
   "files": [
     "dist",
     "openclaw.plugin.json",
+    "LICENSE",
     "README.md",
     "package.json"
   ],
