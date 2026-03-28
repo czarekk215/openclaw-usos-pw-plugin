@@ -28,6 +28,22 @@ openclaw plugins install .
 openclaw gateway restart
 ```
 
+## Install Latest (npm)
+
+If the package is published to npm, users can install the latest version without specifying a version number:
+
+```bash
+openclaw plugins install openclaw-usos-pw-plugin
+openclaw gateway restart
+```
+
+Update later to the newest published release:
+
+```bash
+openclaw plugins update openclaw-usos-pw-plugin
+openclaw gateway restart
+```
+
 ## Install From CI Package
 
 The GitHub Actions workflow builds a ready-to-install `.tgz` package.
@@ -46,6 +62,7 @@ What it does:
 - builds `dist/index.js`
 - creates an npm package archive (`.tgz`)
 - uploads the archive as a workflow artifact
+- on `v*` tags, publishes the package to npm (if `NPM_TOKEN` secret is set)
 - on `v*` tags, attaches the archive to the GitHub Release
 
 ## Example Usage
